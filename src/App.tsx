@@ -9,6 +9,14 @@ import { RegisterPage } from "./features/auth/pages/RegisterPage"
 import { ForgotPasswordPage } from "./features/auth/pages/ForgotPasswordPage"
 import { ResetPasswordPage } from "./features/auth/pages/ResetPasswordPage"
 import { VerifyUserPage } from "./features/auth/pages/VerifyUserPage"
+import { AdminLoginPage } from "./features/admin/pages/AdminLoginPage"
+import { AdminLayout } from "./features/admin/components/AdminLayout"
+import { DashboardOverviewPage } from "./features/admin/pages/DashboardOverviewPage"
+import { UserManagementPage } from "./features/admin/pages/UserManagementPage"
+import { GroupManagementPage } from "./features/admin/pages/GroupManagementPage"
+import { SystemSettingsPage } from "./features/admin/pages/SystemSettingsPage"
+import { AdminProfilePage } from "./features/admin/pages/AdminProfilePage"
+import { AdminSecurityBestPracticesPage } from "./features/admin/pages/AdminSecurityBestPracticesPage"
 
 const App: React.FC = () => {
   return (
@@ -32,6 +40,19 @@ const App: React.FC = () => {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/verify-user" element={<VerifyUserPage />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLoginPage />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="dashboard" element={<DashboardOverviewPage />} />
+              <Route path="users" element={<UserManagementPage />} />
+              <Route path="groups" element={<GroupManagementPage />} />
+              <Route path="settings" element={<SystemSettingsPage />} />
+              <Route path="profile" element={<AdminProfilePage />} />
+              <Route path="security-best-practices" element={<AdminSecurityBestPracticesPage />} />
+            </Route>
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
@@ -41,3 +62,4 @@ const App: React.FC = () => {
 }
 
 export default App
+
